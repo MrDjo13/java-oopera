@@ -27,17 +27,19 @@ public class Show {
     }
 
     public void replaceActor(Actor newActor, String surname) {
-        int index = -1;
+        List<Integer> indices = new ArrayList<>();
         for (int i = 0; i < listOfActors.size(); i++) {
             if (listOfActors.get(i).surname.equals(surname)) {
-                index = i;
-                break;
+                indices.add(i);
             }
         }
 
-        if (index == -1) {
+        if (indices.isEmpty()) {
             System.out.println("Актёра с фамилией " + surname + " нет в спектакле!");
+        } else if (indices.size() > 1) {
+            System.out.println("Найдено несколько актёров с фамилией " + surname + ". Замена не может быть выполнена.");
         } else {
+            int index = indices.get(0);
             listOfActors.set(index, newActor);
             System.out.println("Актёр с фамилией " + surname + " заменён на " + newActor);
         }

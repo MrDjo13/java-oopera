@@ -8,15 +8,17 @@ public class Actor extends Person {
         this.height = height;
     }
 
+    /* если я правильно понял, то должно быть вот так:
+    т.е. различие заключается только в порядке операций внутри выражения return */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Actor actor = (Actor) obj;
-        return Double.compare(actor.height, height) == 0 &&
-                Objects.equals(name, actor.name) &&
+        return Objects.equals(name, actor.name) &&
                 Objects.equals(surname, actor.surname) &&
-                gender == actor.gender;
+                gender == actor.gender &&
+                Double.compare(actor.height, height) == 0;
     }
 
     @Override
